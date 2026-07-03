@@ -1,0 +1,7 @@
+Linux Environment Verification Report
+
+1.Username and Groups: students, groups: student sudo
+2.Current Shell: /bin/bash
+3.Current Working Directory: /workspaces/CLI_SGA_1
+4.Files and Directories: (
+5. Network Connectivity: ping to google.com failed (ICMP blocked in Codespace); curl -I https://google.com
