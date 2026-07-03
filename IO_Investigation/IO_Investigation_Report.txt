@@ -1,0 +1,7 @@
+File Access and I/O Investigation Report
+
+1. Open files: Used lsof -p $$ to list all file descriptors held by the current shell process, including standard streams and shared libraries (libc, locale files).
+2. File Descriptor Observations: Confirmed fd 0 = stdin, fd 1 = stdout, fd 2 = stderr, all pointing to /dev/pts/2 (the terminal).
+3. Redirection Results: ls on a nonexistent folder sent its error message to error.log via 2>, while a successful ls on an existing folder sent output to output.log via >, confirming stdout and stderr are handled as separate streams.
+4. Resource Limits: ulimit -a showed the max number of open files and other per-process limits, relevant to diagnosing logging failures caused by descriptior exhaustion.
+5. Explanation: Linux manages file I/O through file descriptors, small integers that reference open files, pipes, or devices in the kernel's per-process table. Redirection operators let the shell control where a program's input/output goes without modifying the program itself.
