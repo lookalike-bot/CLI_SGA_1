@@ -1,0 +1,3 @@
+Created original.txt with inode X, hardlink.txt shared the same inode as original.txt, confirming both pointo identical data on disk,symlink.txt had a different inode, since it only stores a references/path to the target file. After deleting original.txt, hardlink.txt, still contained the file's content because the hardlink count kept the data block alive.symlink.txt became broken, returning "No such file or directory", since it depended entirely on the original file's path existing.
+
+Conclusion: Hardlinks are safer aginst acidental deletion of the original file since they share the same inode and data, while symbolic links are more flexible(can link across filesystems, link to directories) but break if the target is removed. 
